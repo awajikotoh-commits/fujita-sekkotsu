@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>藤田接骨院｜石川県白山市井口町</title>
+  <meta name="description" content="石川県白山市井口町の藤田接骨院。骨折・脱臼・打撲・捻挫・肉ばなれなど、お体の痛みはお気軽にご相談ください。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2e44;
+      --teal: #2a7f8f;
+      --teal-light: #3a9fb2;
+      --accent: #e8a44a;
+      --warm: #f5f0e8;
+      --white: #ffffff;
+      --gray: #f0f4f7;
+      --text: #2c3e50;
+      --text-light: #6b7f8e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ========== HEADER ========== */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(26,46,68,0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-mark {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: white;
+      font-family: 'Noto Serif JP', serif;
+      letter-spacing: -1px;
+    }
+    .logo-text { color: white; }
+    .logo-text .main { font-size: 16px; font-weight: 700; letter-spacing: 2px; }
+    .logo-text .sub { font-size: 10px; color: rgba(255,255,255,0.6); letter-spacing: 1px; }
+
+    nav { display: flex; align-items: center; gap: 32px; }
+    nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      transition: color 0.3s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--teal-light);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    nav a:hover { color: white; }
+    nav a:hover::after { transform: scaleX(1); }
+
+    .header-tel {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+    .header-tel span { font-size: 11px; display: block; color: rgba(255,255,255,0.6); letter-spacing: 1px; font-weight: 400; }
+
+    /* ========== HERO ========== */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/275768/pexels-photo-275768.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.05);
+      animation: slowZoom 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes slowZoom {
+      from { transform: scale(1.05); }
+      to   { transform: scale(1.12); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(26,46,68,0.85) 0%,
+        rgba(26,46,68,0.6) 50%,
+        rgba(42,127,143,0.3) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(42,127,143,0.3);
+      border: 1px solid rgba(42,127,143,0.6);
+      border-radius: 30px;
+      padding: 6px 16px;
+      color: rgba(255,255,255,0.9);
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--teal-light);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(38px, 5vw, 64px);
+      color: white;
+      line-height: 1.3;
+      margin-bottom: 20px;
+      animation: fadeUp 0.8s 0.15s ease both;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: #7dd4e0;
+    }
+
+    .hero-sub {
+      color: rgba(255,255,255,0.75);
+      font-size: 16px;
+      line-height: 1.9;
+      max-width: 440px;
+      margin-bottom: 40px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.45s ease both;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: white;
+      padding: 14px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(42,127,143,0.4);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(42,127,143,0.5); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 2px;
+      transition: background 0.2s;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.22); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      letter-spacing: 2px;
+      animation: bounceDown 2s ease infinite;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    }
+
+    @keyframes bounceDown {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== INFO BAR ========== */
+    .info-bar {
+      background: var(--navy);
+      padding: 0;
+      display: flex;
+      overflow: hidden;
+    }
+    .info-item {
+      flex: 1;
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.2s;
+    }
+    .info-item:hover { background: rgba(255,255,255,0.04); }
+    .info-item:last-child { border-right: none; }
+    .info-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+    .info-text .label { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 1.5px; }
+    .info-text .value { font-size: 15px; color: white; font-weight: 500; margin-top: 2px; }
+
+    /* ========== SECTIONS ========== */
+    section { padding: 96px 40px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--teal);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(26px, 3.5vw, 38px);
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+    .section-desc {
+      color: var(--text-light);
+      font-size: 15px;
+      line-height: 1.9;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .divider {
+      width: 48px; height: 3px;
+      background: linear-gradient(to right, var(--teal), var(--teal-light));
+      margin: 16px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ========== SERVICES ========== */
+    .services { background: var(--gray); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+    .service-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .service-body {
+      padding: 24px;
+    }
+    .service-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      color: #ffffff;
+      margin-bottom: 14px;
+      margin-top: -46px;
+      position: relative;
+      box-shadow: 0 4px 14px rgba(42,127,143,0.35);
+    }
+    .service-name {
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .service-desc {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    /* ========== ABOUT ========== */
+    .about { background: white; }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
+    }
+    .about-img-accent {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      width: 55%;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      border-radius: 12px;
+      z-index: -1;
+      opacity: 0.2;
+    }
+    .about-label { margin-bottom: 12px; }
+    .about-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 3vw, 34px);
+      color: var(--navy);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .about-text {
+      color: var(--text-light);
+      font-size: 14px;
+      line-height: 2;
+      margin-bottom: 16px;
+    }
+    .about-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 36px;
+      padding-top: 32px;
+      border-top: 1px solid #eee;
+    }
+    .stat-item .num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .stat-item .unit { font-size: 14px; color: var(--text-light); }
+    .stat-item .label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+
+    /* ========== FEATURES ========== */
+    .features {
+      background: var(--navy);
+      padding: 80px 40px;
+    }
+    .features .section-title { color: white; }
+    .features .section-tag { color: var(--teal-light); }
+    .features .section-desc { color: rgba(255,255,255,0.55); }
+    .features .divider { background: linear-gradient(to right, var(--teal-light), transparent); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 28px 22px;
+      text-align: center;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .feature-card:hover {
+      background: rgba(255,255,255,0.09);
+      transform: translateY(-4px);
+    }
+    .feature-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--teal-light);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .feature-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+    }
+    .feature-text {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.8;
+    }
+
+    /* ========== ACCESS ========== */
+    .access { background: white; }
+    .access-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .access-map {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+      line-height: 0;
+    }
+    .access-map iframe {
+      width: 100%;
+      height: 380px;
+      border: none;
+      display: block;
+    }
+    .access-info { padding-top: 8px; }
+    .access-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 32px;
+    }
+    .access-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 32px;
+    }
+    .access-table tr { border-bottom: 1px solid #eee; }
+    .access-table td {
+      padding: 14px 0;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    .access-table td:first-child {
+      width: 90px;
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding-top: 16px;
+    }
+    /* ===== HOURS TABLE ===== */
+    .hours-table-wrap { margin: 0; }
+    .hours-table {
+      width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 13px;
+    }
+    .hours-table thead th {
+      background: var(--navy); color: white; padding: 8px 4px;
+      text-align: center; font-size: 12px; font-weight: 700;
+    }
+    .hours-table thead th:first-child { background: transparent; }
+    .hours-table thead th.hours-sat { color: #90caf9; }
+    .hours-table thead th.hours-sun { color: #ef9a9a; }
+    .hours-table tbody tr { border-bottom: 1px solid #e8eef2; }
+    .hours-range {
+      color: var(--teal); font-weight: 700; font-size: 11px; text-align: center;
+      line-height: 1.4; padding: 8px 4px; background: #f0fafc;
+      border-right: 2px solid var(--teal-light); white-space: nowrap;
+    }
+    .hours-range span { color: var(--text-light); font-size: 10px; }
+    .hours-open, .hours-closed { text-align: center; font-size: 15px; font-weight: 700; padding: 10px 2px; }
+    .hours-open { color: var(--teal); }
+    .hours-closed { color: #e57373; }
+    .hours-table td.hours-sat, .hours-table th.hours-sat { background: rgba(144,202,249,0.1); }
+    .hours-table td.hours-sun, .hours-table th.hours-sun { background: rgba(239,154,154,0.08); }
+    .hours-note {
+      font-size: 11px; color: var(--text-light); background: #f5f7fa;
+      padding: 7px 10px; border-radius: 4px; text-align: center; margin-top: 6px;
+    }
+
+    /* ===== HOLIDAY CALENDAR ===== */
+    .holiday-cal { background: var(--warm); }
+    .hcal-wrap { max-width: 720px; margin: 0 auto; }
+    .hcal-card {
+      background: white; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+    .hcal-header {
+      background: var(--navy); padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .hcal-title { color: white; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+    .hcal-nav {
+      background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      color: white; width: 34px; height: 34px; border-radius: 7px; cursor: pointer;
+      font-size: 18px; display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .hcal-nav:hover { background: rgba(255,255,255,0.25); }
+    .hcal-body { padding: 20px; }
+    .hcal-dow-row {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 6px;
+    }
+    .hcal-dow {
+      text-align: center; font-size: 11px; font-weight: 700; padding: 6px 0;
+      color: var(--text-light); letter-spacing: 1px;
+    }
+    .hcal-dow.sun { color: #e57373; }
+    .hcal-dow.sat { color: #5c9dd8; }
+    .hcal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .hcal-cell {
+      min-height: 64px; border-radius: 8px; padding: 6px 4px;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      background: #fafbfc; border: 1px solid #eef1f4;
+    }
+    .hcal-cell.other-month { background: transparent; border-color: transparent; }
+    .hcal-cell.is-closed { background: #fff5f5; border-color: #ffd0d0; }
+    .hcal-cell.is-temp-closed { background: #fff8f0; border-color: #ffd9a0; }
+    .badge-temp { background: #f59e0b; color: white; }
+    .legend-dot.temp { background: #f59e0b; }
+    /* お知らせバナー */
+    .notice-bar {
+      display: none;
+      background: #f59e0b;
+      color: white;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      position: relative;
+      z-index: 100;
+    }
+    .notice-bar.active { display: block; }
+    .hcal-cell.is-today .hcal-date {
+      background: var(--teal); color: white; border-radius: 50%;
+      width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
+    }
+    .hcal-date { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1; }
+    .hcal-cell.sun .hcal-date { color: #e57373; }
+    .hcal-cell.sat .hcal-date { color: #5c9dd8; }
+    .hcal-cell.other-month .hcal-date { color: #ccc; }
+    .hcal-badge {
+      font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 10px;
+      white-space: nowrap;
+    }
+    .badge-closed { background: #e57373; color: white; }
+    .hcal-legend {
+      display: flex; gap: 20px; justify-content: center;
+      padding: 14px 20px; border-top: 1px solid #eee; background: #f8f9fa;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-light); }
+    .legend-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+    }
+    .legend-dot.closed { background: #e57373; }
+    .legend-dot.today { background: var(--teal); }
+
+    .tel-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: white;
+      padding: 14px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      box-shadow: 0 4px 16px rgba(42,127,143,0.35);
+      transition: transform 0.2s;
+    }
+    .tel-link:hover { transform: translateY(-2px); }
+
+    /* ========== CONTACT ========== */
+    .contact { background: white; }
+    .contact-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.07);
+      overflow: hidden;
+    }
+    .contact-form-header {
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+      padding: 28px 36px;
+      color: white;
+    }
+    .contact-form-header h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .contact-form-header p  { font-size: 13px; opacity: 0.8; }
+    .contact-form-body { padding: 32px 36px; }
+    .cf-row { margin-bottom: 22px; }
+    .cf-row label {
+      display: block; font-size: 13px; font-weight: 700;
+      color: var(--navy); margin-bottom: 7px;
+    }
+    .cf-row label .cf-req {
+      background: var(--teal); color: white;
+      font-size: 10px; padding: 2px 6px; border-radius: 3px;
+      margin-left: 6px; font-weight: 700;
+    }
+    .cf-row input, .cf-row textarea, .cf-row select {
+      width: 100%; padding: 12px 14px;
+      border: 2px solid #e0e8ee; border-radius: 8px;
+      font-size: 15px; font-family: 'Noto Sans JP', sans-serif;
+      color: var(--text); outline: none;
+      transition: border-color 0.2s; background: #fafbfc;
+    }
+    .cf-row input:focus, .cf-row textarea:focus, .cf-row select:focus {
+      border-color: var(--teal); background: white;
+    }
+    .cf-row textarea { resize: vertical; min-height: 120px; }
+    .cf-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--teal), var(--teal-light));
+      color: white; border: none; padding: 16px;
+      border-radius: 8px; font-size: 16px; font-weight: 700;
+      letter-spacing: 2px; cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .cf-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+    .cf-note { font-size: 12px; color: var(--text-light); text-align: center; margin-top: 14px; }
+    .cf-success {
+      display: none; text-align: center; padding: 40px 20px;
+      color: var(--teal);
+    }
+    .cf-success .cf-success-icon { font-size: 48px; margin-bottom: 14px; }
+    .cf-success p { font-size: 16px; font-weight: 700; }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 40px 40px 24px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .footer-name {
+      font-size: 20px;
+      font-family: 'Noto Serif JP', serif;
+      color: white;
+      font-weight: 700;
+    }
+    .footer-address {
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+    .footer-nav a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: white; }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.25); }
+
+    /* ========== PRIVACY MODAL ========== */
+    .pp-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .pp-overlay.open { display: flex; }
+    .pp-modal {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+    }
+    .pp-close {
+      position: absolute;
+      top: 16px; right: 20px;
+      font-size: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #666;
+      line-height: 1;
+    }
+    .pp-modal h2 { font-size: 20px; margin-bottom: 20px; color: var(--navy); }
+    .pp-modal h3 { font-size: 14px; font-weight: 700; margin: 20px 0 6px; color: var(--navy); }
+    .pp-modal p, .pp-modal li { font-size: 13px; color: #555; line-height: 1.8; }
+    .pp-modal ul { padding-left: 20px; margin-bottom: 8px; }
+    .pp-link {
+      color: rgba(255,255,255,0.45);
+      font-size: 11px;
+      text-decoration: underline;
+      cursor: pointer;
+      background: none;
+      border: none;
+      margin-top: 10px;
+      display: inline-block;
+    }
+    .pp-link:hover { color: white; }
+
+    /* ========== SCROLL ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; }
+      .gallery-item:first-child { grid-column: span 3; grid-row: span 1; height: 260px; }
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 0 20px; }
+      nav { display: none; }
+      section { padding: 64px 20px; }
+      .hero-content { padding: 0 20px; }
+      .about-inner { grid-template-columns: 1fr; }
+      .access-inner { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-column: span 2; }
+      .info-bar { flex-direction: column; }
+      .info-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header>
+  <a href="#" class="logo">
+    <div class="logo-mark">接</div>
+    <div class="logo-text">
+      <div class="main">藤田接骨院</div>
+      <div class="sub">FUJITA SEKKOTSU-IN</div>
+    </div>
+  </a>
+  <nav>
+    <a href="#access">アクセス</a>
+    <a href="#calendar">休診日</a>
+    <a href="#services">施術内容</a>
+    <a href="#about">院長について</a>
+  </nav>
+  <a href="tel:0762735005" class="header-tel">076-273-5005<span>お気軽にお電話ください</span></a>
+</header>
+
+<!-- ========== NOTICE BAR ========== -->
+<div class="notice-bar" id="notice-bar"></div>
+
+<!-- ========== HERO ========== -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">石川県白山市井口町</div>
+    <h1 class="hero-title">
+      痛みのない毎日へ、<br>
+      <em>ともに歩む</em>接骨院
+    </h1>
+    <p class="hero-sub">
+      骨折・脱臼・打撲・捻挫・肉ばなれなど、<br>
+      お体の不調をしっかり診させていただきます。<br>
+      お気軽にご来院・ご相談ください。
+    </p>
+    <div class="hero-btns">
+      <a href="#access" class="btn-primary">診療時間・アクセス</a>
+      <a href="#services" class="btn-secondary">施術内容を見る</a>
+    </div>
+  </div>
+  <div class="hero-scroll">SCROLL</div>
+</section>
+
+<!-- ========== INFO BAR ========== -->
+<div class="info-bar">
+  <div class="info-item">
+    <div class="info-icon">🕐</div>
+    <div class="info-text">
+      <div class="label">OPEN</div>
+      <div class="value">平日 8:30〜12:30 / 14:30〜19:30　土曜 8:30〜14:30</div>
+    </div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">📅</div>
+    <div class="info-text">
+      <div class="label">CLOSED</div>
+      <div class="value">日曜・祝日 定休</div>
+    </div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">📍</div>
+    <div class="info-text">
+      <div class="label">LOCATION</div>
+      <div class="value">石川県白山市井口町</div>
+    </div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">📞</div>
+    <div class="info-text">
+      <div class="label">TEL</div>
+      <div class="value">076-273-5005</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ACCESS ========== -->
+<section class="access" id="access">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-tag">Access</p>
+      <h2 class="section-title">診療時間・アクセス</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="access-inner">
+      <div class="access-info reveal">
+        <h3 class="access-title">藤田接骨院</h3>
+        <table class="access-table">
+          <tr>
+            <td>住所</td>
+            <td>〒920-2154<br>石川県白山市井口町イ98番地7</td>
+          </tr>
+          <tr>
+            <td>電話</td>
+            <td>076-273-5005</td>
+          </tr>
+          <tr>
+            <td style="padding-top:18px;vertical-align:top;">診療時間</td>
+            <td style="padding-top:18px;">
+              <div class="hours-table-wrap">
+                <table class="hours-table">
+                  <thead>
+                    <tr>
+                      <th class="hours-time-col"></th>
+                      <th>月</th><th>火</th><th>水</th><th>木</th><th>金</th>
+                      <th class="hours-sat">土</th>
+                      <th class="hours-sun">日</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="hours-range">8:30<br><span>〜</span><br>12:30</td>
+                      <td class="hours-open">●</td><td class="hours-open">●</td>
+                      <td class="hours-open">●</td><td class="hours-open">●</td>
+                      <td class="hours-open">●</td>
+                      <td class="hours-open hours-sat">●</td>
+                      <td class="hours-closed hours-sun">×</td>
+                    </tr>
+                    <tr>
+                      <td class="hours-range" style="font-size:10px;color:#aaa;">12:30<br><span>〜</span><br>14:30<br><small style="color:#5c9dd8;font-size:9px;">土曜のみ</small></td>
+                      <td class="hours-closed">—</td><td class="hours-closed">—</td>
+                      <td class="hours-closed">—</td><td class="hours-closed">—</td>
+                      <td class="hours-closed">—</td>
+                      <td class="hours-open hours-sat">●</td>
+                      <td class="hours-closed hours-sun">×</td>
+                    </tr>
+                    <tr>
+                      <td class="hours-range">14:30<br><span>〜</span><br>19:30</td>
+                      <td class="hours-open">●</td><td class="hours-open">●</td>
+                      <td class="hours-open">●</td><td class="hours-open">●</td>
+                      <td class="hours-open">●</td>
+                      <td class="hours-closed hours-sat">×</td>
+                      <td class="hours-closed hours-sun">×</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p class="hours-note">土曜は8:30〜14:30　／　定休日：日曜・祝日</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>駐車場</td>
+            <td>あり（4台）</td>
+          </tr>
+        </table>
+        <a href="tel:0762735005" class="tel-link">
+          📞 076-273-5005
+        </a>
+      </div>
+      <div class="access-map reveal">
+        <iframe
+          src="https://maps.google.com/maps?q=石川県白山市井口町イ98番地7&output=embed&hl=ja&z=16"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="藤田接骨院 地図">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOLIDAY CALENDAR ========== -->
+<section class="holiday-cal" id="calendar">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-tag">Calendar</p>
+      <h2 class="section-title">休診日カレンダー</h2>
+      <div class="divider"></div>
+      <p class="section-desc">日曜・祝日は休院です。毎月の休診日をご確認ください。</p>
+    </div>
+    <div class="hcal-wrap reveal">
+      <div class="hcal-card">
+        <div class="hcal-header">
+          <button class="hcal-nav" id="hcal-prev">&#8249;</button>
+          <span class="hcal-title" id="hcal-title"></span>
+          <button class="hcal-nav" id="hcal-next">&#8250;</button>
+        </div>
+        <div class="hcal-body">
+          <div class="hcal-dow-row">
+            <div class="hcal-dow sun">日</div>
+            <div class="hcal-dow">月</div>
+            <div class="hcal-dow">火</div>
+            <div class="hcal-dow">水</div>
+            <div class="hcal-dow">木</div>
+            <div class="hcal-dow">金</div>
+            <div class="hcal-dow sat">土</div>
+          </div>
+          <div class="hcal-grid" id="hcal-grid"></div>
+        </div>
+        <div class="hcal-legend">
+          <div class="legend-item"><div class="legend-dot closed"></div>休診日</div>
+          <div class="legend-item"><div class="legend-dot temp"></div>臨時休診</div>
+          <div class="legend-item"><div class="legend-dot today"></div>今日</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SERVICES ========== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-tag">Services</p>
+      <h2 class="section-title">施術内容</h2>
+      <div class="divider"></div>
+      <p class="section-desc">急性の怪我から慢性的な痛みまで、<br>一人ひとりの症状に合わせた丁寧な施術を行います。</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <img
+          src="https://images.pexels.com/photos/15068316/pexels-photo-15068316.jpeg?auto=compress&cs=tinysrgb&w=600"
+          alt="骨折・脱臼・打撲・捻挫・肉ばなれ"
+          class="service-img">
+        <div class="service-body">
+          <div class="service-icon"><i class="fa-solid fa-bone"></i></div>
+          <div class="service-name">骨折・脱臼・打撲・捻挫・肉ばなれ</div>
+          <p class="service-desc">スポーツや日常の怪我に素早く対応。早期回復を目指した施術を行います。</p>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <img
+          src="https://images.pexels.com/photos/10102313/pexels-photo-10102313.jpeg?auto=compress&cs=tinysrgb&w=600"
+          alt="交通事故施術"
+          class="service-img">
+        <div class="service-body">
+          <div class="service-icon"><i class="fa-solid fa-car-burst"></i></div>
+          <div class="service-name">交通事故施術</div>
+          <p class="service-desc">むち打ちや交通事故後の痛みに対応。保険適用での施術も承ります。</p>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <img
+          src="https://images.pexels.com/photos/7339492/pexels-photo-7339492.jpeg?auto=compress&cs=tinysrgb&w=600"
+          alt="スポーツ障害"
+          class="service-img">
+        <div class="service-body">
+          <div class="service-icon"><i class="fa-solid fa-person-running"></i></div>
+          <div class="service-name">スポーツ障害</div>
+          <p class="service-desc">競技復帰を目指すアスリートの怪我・スポーツ障害の回復を全力でサポートします。</p>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <img
+          src="https://images.pexels.com/photos/4599424/pexels-photo-4599424.jpeg?auto=compress&cs=tinysrgb&w=600"
+          alt="テーピング・リハビリ"
+          class="service-img">
+        <div class="service-body">
+          <div class="service-icon"><i class="fa-solid fa-bandage"></i></div>
+          <div class="service-name">テーピング・リハビリ</div>
+          <p class="service-desc">機能回復・再発予防のためのテーピングや運動療法で日常生活をサポートします。</p>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <img
+          src="https://images.pexels.com/photos/30380471/pexels-photo-30380471.jpeg?auto=compress&cs=tinysrgb&w=600"
+          alt="往診"
+          class="service-img">
+        <div class="service-body">
+          <div class="service-icon"><i class="fa-solid fa-house-medical"></i></div>
+          <div class="service-name">往診</div>
+          <p class="service-desc">怪我により来院が困難な方はお気軽にご相談ください。自宅等にお伺いして施術、リハビリ、マッサージを行ないます。相談は、電話でも問い合わせフォームでもどちらでも結構です。</p>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <img
+          src="https://images.pexels.com/photos/36780550/pexels-photo-36780550.jpeg?auto=compress&cs=tinysrgb&w=600"
+          alt="営業時間外の診療"
+          class="service-img">
+        <div class="service-body">
+          <div class="service-icon"><i class="fa-solid fa-clock"></i></div>
+          <div class="service-name">営業時間外の診療</div>
+          <p class="service-desc">学校、部活動などで営業時間中の来院が困難な方は問い合わせフォームで連絡をお願いします。ご都合に合わせて可能な限り対応します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="reveal">
+        <p class="section-tag about-label">About</p>
+        <h2 class="about-title">長年の経験で、<br>あなたの痛みに向き合います</h2>
+        <p class="about-text">
+          30年以上の臨床経験を積み重ねてきた藤田接骨院では、急性の外傷、腰痛、関節の痛み、スポーツでの障害など幅広い症状に対応します。患者さまお一人おひとりの状態をていねいに診て、
+          その方に合った最善の施術をご提案します。
+        </p>
+        <p class="about-text">
+          当院が大切にしているのは、「痛みをとる」ことだけではありません。
+          ケガの予防・日常のセルフケア・再発を防ぐためのリハビリやトレーニングにも力を入れ、
+          症状が改善した後も安心して通い続けられる環境づくりを心がけています。
+          地域の皆さまの健康を長くサポートできる接骨院でありたいと思っています。
+        </p>
+        <p class="about-text" style="text-align:right; margin-top:8px;">院長　藤田宏幸</p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="num">保険<span class="unit" style="font-size:16px">対応</span></div>
+            <div class="label">健康保険、自賠責、労災</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section class="features">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-tag">Why Choose Us</p>
+      <h2 class="section-title">4つの安心</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-num">01</div>
+        <div class="feature-title">地域密着の安心感</div>
+        <p class="feature-text">白山市で長年診療を続ける地域に根ざした接骨院。地元の方々に支えられながら、信頼を積み重ねています。</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-num">02</div>
+        <div class="feature-title">丁寧なカウンセリング</div>
+        <p class="feature-text">お体の状態や生活習慣を詳しく伺い、一人ひとりに合った施術プランをご提案します。</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-num">03</div>
+        <div class="feature-title">各種保険取り扱い</div>
+        <p class="feature-text">健康保険・自賠責・労災に対応。交通事故施術も安心してお任せください。</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-num">04</div>
+        <div class="feature-title">通いやすい営業時間</div>
+        <p class="feature-text">仕事帰りにも立ち寄れる時間帯まで診療を行っております。必要に応じて、早朝夜間等対応します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="section-tag">Contact</p>
+      <h2 class="section-title">お問い合わせ</h2>
+      <div class="divider"></div>
+      <p class="section-desc">ご不明な点やご相談はお気軽にどうぞ。</p>
+    </div>
+    <div class="contact-wrap reveal">
+      <div class="contact-form-header">
+        <h3>お問い合わせフォーム</h3>
+        <p>内容を確認次第、折り返しご連絡いたします。</p>
+      </div>
+      <div class="contact-form-body">
+        <div id="cf-success" class="cf-success">
+          <div class="cf-success-icon">✉️</div>
+          <p>送信が完了しました。<br>2〜3営業日以内にご返信いたします。</p>
+        </div>
+        <form id="contact-form" action="https://formspree.io/f/xlgaryod" method="POST">
+          <div class="cf-row">
+            <label>お名前<span class="cf-req">必須</span></label>
+            <input type="text" name="name" placeholder="山田 太郎" required>
+          </div>
+          <div class="cf-row">
+            <label>メールアドレス<span class="cf-req">必須</span></label>
+            <input type="email" name="email" placeholder="example@email.com" required>
+          </div>
+          <div class="cf-row">
+            <label>電話番号</label>
+            <input type="tel" name="phone" placeholder="090-0000-0000">
+          </div>
+          <div class="cf-row">
+            <label>お問い合わせ内容<span class="cf-req">必須</span></label>
+            <textarea name="message" placeholder="症状・ご質問など、お気軽にご記入ください。" required></textarea>
+          </div>
+          <button type="submit" class="cf-submit">送 信</button>
+          <p class="cf-note">※ご入力いただいた個人情報は、お問い合わせへの返答のみに使用します。</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRIVACY POLICY MODAL ========== -->
+<div class="pp-overlay" id="pp-overlay">
+  <div class="pp-modal">
+    <button class="pp-close" id="pp-close">✕</button>
+    <h2>プライバシーポリシー</h2>
+    <p>藤田接骨院（以下「当院」）は、患者さまの個人情報の保護を重要な責務と考え、以下のとおり適切に取り扱います。</p>
+
+    <h3>1. 収集する個人情報</h3>
+    <p>当院のお問い合わせフォームでは、以下の情報をお預かりする場合があります。</p>
+    <ul>
+      <li>お名前</li>
+      <li>メールアドレス</li>
+      <li>お問い合わせ内容</li>
+    </ul>
+
+    <h3>2. 利用目的</h3>
+    <p>収集した個人情報は、以下の目的にのみ使用します。</p>
+    <ul>
+      <li>お問い合わせへの返答</li>
+      <li>当院からのご連絡</li>
+    </ul>
+
+    <h3>3. 第三者への提供</h3>
+    <p>法令に基づく場合を除き、患者さまの同意なく第三者に個人情報を提供することはありません。</p>
+
+    <h3>4. 個人情報の管理</h3>
+    <p>収集した個人情報は適切に管理し、紛失・漏洩・改ざんの防止に努めます。利用目的の達成後は速やかに削除します。</p>
+
+    <h3>5. 開示・訂正・削除</h3>
+    <p>ご自身の個人情報の開示・訂正・削除をご希望の場合は、下記の連絡先までお申し出ください。</p>
+
+    <h3>6. お問い合わせ先</h3>
+    <p>
+      藤田接骨院<br>
+      〒920-2154 石川県白山市井口町イ98番地7<br>
+      TEL：076-273-5005
+    </p>
+
+    <h3>7. 改定</h3>
+    <p>本ポリシーは必要に応じて改定することがあります。改定後はこのページに掲載します。</p>
+
+    <p style="margin-top:24px; color:#aaa; font-size:12px;">制定日：2026年4月</p>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-mark" style="background:linear-gradient(135deg,#2a7f8f,#3a9fb2)">接</div>
+    <div class="footer-name">藤田接骨院</div>
+  </div>
+  <p class="footer-address">〒920-2154 石川県白山市井口町イ98番地7</p>
+  <nav class="footer-nav">
+    <a href="#access">アクセス</a>
+    <a href="#calendar">休診日</a>
+    <a href="#services">施術内容</a>
+    <a href="#about">院長について</a>
+    <a href="#contact">お問い合わせ</a>
+  </nav>
+  <p class="footer-copy">© 2026 藤田接骨院 All Rights Reserved.</p>
+  <button class="pp-link" id="pp-open">プライバシーポリシー</button>
+  <p class="footer-copy" style="margin-top:10px;">Produced by デザインワークスつなぐ</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // プライバシーポリシー モーダル
+  const ppOverlay = document.getElementById('pp-overlay');
+  document.getElementById('pp-open').addEventListener('click', () => ppOverlay.classList.add('open'));
+  document.getElementById('pp-close').addEventListener('click', () => ppOverlay.classList.remove('open'));
+  ppOverlay.addEventListener('click', (e) => { if (e.target === ppOverlay) ppOverlay.classList.remove('open'); });
+
+  // =============================================
+  // 休診日カレンダー
+  // =============================================
+  // 祝日リスト (YYYY-MM-DD)
+  const HOLIDAYS = new Set([
+    // 2025
+    '2025-01-01','2025-01-13','2025-02-11','2025-02-23','2025-02-24',
+    '2025-03-20','2025-04-29','2025-05-03','2025-05-04','2025-05-05','2025-05-06',
+    '2025-07-21','2025-08-11','2025-09-15','2025-09-22','2025-09-23',
+    '2025-10-13','2025-11-03','2025-11-23','2025-11-24',
+    // 2026
+    '2026-01-01','2026-01-12','2026-02-11','2026-02-23',
+    '2026-03-20','2026-04-29','2026-05-03','2026-05-04','2026-05-05','2026-05-06',
+    '2026-07-20','2026-08-11','2026-09-21','2026-09-22','2026-09-23',
+    '2026-10-12','2026-11-03','2026-11-23',
+    // 2027
+    '2027-01-01','2027-01-11','2027-02-11','2027-02-23',
+    '2027-03-21','2027-04-29','2027-05-03','2027-05-04','2027-05-05',
+    '2027-07-19','2027-08-11','2027-09-20','2027-09-23',
+    '2027-10-11','2027-11-03','2027-11-23',
+  ]);
+
+  // =============================================
+  // カレンダー公開範囲 ← 翌月公開時（第4月曜日）にここを更新
+  // 例: 2026年5月を公開するなら '2026-05'
+  const CALENDAR_VISIBLE_UNTIL = '2026-05';
+  // =============================================
+
+  // =============================================
+  // 臨時休診日 ← ここに日付を追加するだけでOK
+  // 例: '2026-05-10', '2026-06-03',
+  const TEMPORARY_CLOSED = [
+
+  ];
+  // =============================================
+
+  const pad2 = n => String(n).padStart(2,'0');
+  const fmtDate = d => `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
+
+  function isClosed(d) {
+    return d.getDay() === 0 || HOLIDAYS.has(fmtDate(d));
+  }
+  function isTempClosed(d) {
+    return TEMPORARY_CLOSED.includes(fmtDate(d));
+  }
+
+  // お知らせバナー（臨時休診が今日以降にあれば表示）
+  function updateNoticeBar() {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const upcoming = TEMPORARY_CLOSED
+      .map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d)}; })
+      .filter(x => x.date >= today)
+      .sort((a,b) => a.date - b.date);
+    const bar = document.getElementById('notice-bar');
+    if (upcoming.length > 0) {
+      const dates = upcoming.map(x => {
+        const [y,m,d] = x.str.split('-');
+        return `${parseInt(m)}月${parseInt(d)}日`;
+      }).join('・');
+      bar.textContent = `⚠ 臨時休診のお知らせ：${dates} は休診となります。ご不便をおかけします。`;
+      bar.classList.add('active');
+    } else {
+      bar.classList.remove('active');
+    }
+  }
+
+  let hcalYear, hcalMonth;
+
+  function initHcal() {
+    const now = new Date();
+    hcalYear  = now.getFullYear();
+    hcalMonth = now.getMonth();
+    renderHcal();
+  }
+
+  function renderHcal() {
+    const MONTH_NAMES = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+    document.getElementById('hcal-title').textContent = `${hcalYear}年 ${MONTH_NAMES[hcalMonth]}`;
+
+    const today      = new Date(); today.setHours(0,0,0,0);
+    const firstDay   = new Date(hcalYear, hcalMonth, 1).getDay();
+    const daysInMonth= new Date(hcalYear, hcalMonth + 1, 0).getDate();
+    const prevDays   = new Date(hcalYear, hcalMonth, 0).getDate();
+
+    let html = '';
+
+    // 前月の埋め
+    for (let i = firstDay - 1; i >= 0; i--) {
+      html += `<div class="hcal-cell other-month"><span class="hcal-date">${prevDays - i}</span></div>`;
+    }
+
+    // 当月
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date  = new Date(hcalYear, hcalMonth, d);
+      const dow   = date.getDay();
+      const ds    = fmtDate(date);
+      const closed= isClosed(date);
+      const tempClosed = isTempClosed(date);
+      const isToday = date.getTime() === today.getTime();
+      let cls = 'hcal-cell';
+      if (dow === 0) cls += ' sun';
+      else if (dow === 6) cls += ' sat';
+      if (tempClosed) cls += ' is-temp-closed';
+      else if (closed) cls += ' is-closed';
+      if (isToday) cls += ' is-today';
+      html += `<div class="${cls}">
+        <span class="hcal-date">${d}</span>
+        ${tempClosed ? '<span class="hcal-badge badge-temp">臨時休診</span>' : closed ? '<span class="hcal-badge badge-closed">休診日</span>' : ''}
+      </div>`;
+    }
+
+    // 次月の埋め
+    const cells = firstDay + daysInMonth;
+    const remaining = cells % 7 === 0 ? 0 : 7 - (cells % 7);
+    for (let d = 1; d <= remaining; d++) {
+      html += `<div class="hcal-cell other-month"><span class="hcal-date">${d}</span></div>`;
+    }
+
+    document.getElementById('hcal-grid').innerHTML = html;
+  }
+
+  function isNextAllowed() {
+    const [vy, vm] = CALENDAR_VISIBLE_UNTIL.split('-').map(Number);
+    const nextYear  = hcalMonth === 11 ? hcalYear + 1 : hcalYear;
+    const nextMonth = hcalMonth === 11 ? 0 : hcalMonth + 1;
+    return nextYear < vy || (nextYear === vy && nextMonth <= vm - 1);
+  }
+
+  function updateNavButtons() {
+    const nextBtn = document.getElementById('hcal-next');
+    if (isNextAllowed()) {
+      nextBtn.disabled = false;
+      nextBtn.style.opacity = '1';
+      nextBtn.style.cursor = 'pointer';
+    } else {
+      nextBtn.disabled = true;
+      nextBtn.style.opacity = '0.3';
+      nextBtn.style.cursor = 'default';
+    }
+  }
+
+  const _origRenderHcal = renderHcal;
+  renderHcal = function() {
+    _origRenderHcal();
+    updateNavButtons();
+  };
+
+  document.getElementById('hcal-prev').addEventListener('click', () => {
+    hcalMonth--;
+    if (hcalMonth < 0) { hcalMonth = 11; hcalYear--; }
+    renderHcal();
+  });
+  document.getElementById('hcal-next').addEventListener('click', () => {
+    if (!isNextAllowed()) return;
+    hcalMonth++;
+    if (hcalMonth > 11) { hcalMonth = 0; hcalYear++; }
+    renderHcal();
+  });
+
+  initHcal();
+  updateNoticeBar();
+
+  // お問い合わせフォーム送信
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = contactForm.querySelector('.cf-submit');
+      btn.disabled = true;
+      btn.textContent = '送信中…';
+      try {
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          contactForm.style.display = 'none';
+          document.getElementById('cf-success').style.display = 'block';
+        } else {
+          alert('送信に失敗しました。お手数ですがお電話でお問い合わせください。');
+          btn.disabled = false;
+          btn.textContent = '送 信';
+        }
+      } catch {
+        alert('通信エラーが発生しました。お手数ですがお電話でお問い合わせください。');
+        btn.disabled = false;
+        btn.textContent = '送 信';
+      }
+    });
+  }
+
+  // Smooth header bg
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    header.style.background = window.scrollY > 60
+      ? 'rgba(26,46,68,0.97)'
+      : 'rgba(26,46,68,0.92)';
+  });
+</script>
+</body>
+</html>
