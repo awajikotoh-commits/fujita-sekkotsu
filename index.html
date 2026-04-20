@@ -1354,9 +1354,10 @@
   ]);
 
   // =============================================
-  // カレンダー公開範囲 ← 翌月公開時（第4月曜日）にここを更新
-  // 例: 2026年5月を公開するなら '2026-05'
-  const CALENDAR_VISIBLE_UNTIL = '2026-04';
+  // カレンダー公開範囲（自動計算：常に翌月まで表示）
+  const _today = new Date();
+  const _future = new Date(_today.getFullYear(), _today.getMonth() + 1, 1);
+  const CALENDAR_VISIBLE_UNTIL = `${_future.getFullYear()}-${String(_future.getMonth() + 1).padStart(2, '0')}`;
   // =============================================
 
   // =============================================
