@@ -1354,10 +1354,29 @@
   ]);
 
   // =============================================
-  // カレンダー公開範囲（自動計算：常に翌月まで表示）
+  // カレンダー公開範囲（第3木曜日の翌週月曜日 夜8時以降に翌月を表示）
   const _today = new Date();
-  const _future = new Date(_today.getFullYear(), _today.getMonth() + 1, 1);
-  const CALENDAR_VISIBLE_UNTIL = `${_future.getFullYear()}-${String(_future.getMonth() + 1).padStart(2, '0')}`;
+  const CALENDAR_VISIBLE_UNTIL = (function() {
+    const y = _today.getFullYear(), m = _today.getMonth();
+    // 当月の第3木曜日を求める
+    let count = 0, thirdThu = null;
+    for (let d = 1; d <= 31; d++) {
+      const dt = new Date(y, m, d);
+      if (dt.getMonth() !== m) break;
+      if (dt.getDay() === 4) { count++; if (count === 3) { thirdThu = dt; break; } }
+    }
+    // 翌週月曜日 夜8時
+    const switchDate = new Date(thirdThu);
+    switchDate.setDate(thirdThu.getDate() + 4);
+    switchDate.setHours(20, 0, 0, 0);
+    // 切替日時を過ぎていれば翌月まで、そうでなければ当月まで
+    if (_today >= switchDate) {
+      const next = new Date(y, m + 1, 1);
+      return `${next.getFullYear()}-${String(next.getMonth() + 1).padStart(2, '0')}`;
+    } else {
+      return `${y}-${String(m + 1).padStart(2, '0')}`;
+    }
+  })();
   // =============================================
 
   // =============================================
@@ -1460,6 +1479,12 @@
     return nextYear < vy || (nextYear === vy && nextMonth <= vm - 1);
   }
 
+  function isPrevAllowed() {
+    const now = new Date();
+    const curYear = now.getFullYear(), curMonth = now.getMonth();
+    return hcalYear > curYear || (hcalYear === curYear && hcalMonth > curMonth);
+  }
+
   function updateNavButtons() {
     const nextBtn = document.getElementById('hcal-next');
     if (isNextAllowed()) {
@@ -1471,6 +1496,16 @@
       nextBtn.style.opacity = '0.3';
       nextBtn.style.cursor = 'default';
     }
+    const prevBtn = document.getElementById('hcal-prev');
+    if (isPrevAllowed()) {
+      prevBtn.disabled = false;
+      prevBtn.style.opacity = '1';
+      prevBtn.style.cursor = 'pointer';
+    } else {
+      prevBtn.disabled = true;
+      prevBtn.style.opacity = '0.3';
+      prevBtn.style.cursor = 'default';
+    }
   }
 
   const _origRenderHcal = renderHcal;
@@ -1480,6 +1515,7 @@
   };
 
   document.getElementById('hcal-prev').addEventListener('click', () => {
+    if (!isPrevAllowed()) return;
     hcalMonth--;
     if (hcalMonth < 0) { hcalMonth = 11; hcalYear--; }
     renderHcal();
