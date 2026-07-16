@@ -1373,7 +1373,7 @@
     switchDate.setDate(thirdThu.getDate() + 4);
     switchDate.setHours(20, 0, 0, 0);
     // 切替日時を過ぎていれば翌月まで、そうでなければ当月まで
-    if (_today >= switchDate) {
+    if (_today >= switchDate || SHOW_NEXT_MONTH_EARLY) {
       const next = new Date(y, m + 1, 1);
       return `${next.getFullYear()}-${String(next.getMonth() + 1).padStart(2, '0')}`;
     } else {
@@ -1394,6 +1394,9 @@
     '2026-08-14',
     '2026-08-15',
   ];
+
+  // 翌月カレンダーを早期表示する場合は true に（通常は false）
+  const SHOW_NEXT_MONTH_EARLY = true;
 
   // 午前のみ休診日 ← ここに日付を追加するだけでOK
   const MORNING_CLOSED = [
