@@ -623,7 +623,9 @@
     .hcal-cell.is-closed { background: #fff5f5; border-color: #ffd0d0; }
     .hcal-cell.is-temp-closed { background: #fff8f0; border-color: #ffd9a0; }
     .badge-temp { background: #f59e0b; color: white; }
+    .badge-morning { background: #fb923c; color: white; }
     .legend-dot.temp { background: #f59e0b; }
+    .legend-dot.morning { background: #fb923c; }
     /* お知らせバナー */
     .notice-bar {
       display: none;
@@ -1055,6 +1057,7 @@
         <div class="hcal-legend">
           <div class="legend-item"><div class="legend-dot closed"></div>休診日</div>
           <div class="legend-item"><div class="legend-dot temp"></div>臨時休診</div>
+          <div class="legend-item"><div class="legend-dot morning"></div>午前休診</div>
           <div class="legend-item"><div class="legend-dot today"></div>今日</div>
         </div>
       </div>
@@ -1385,6 +1388,11 @@
   const TEMPORARY_CLOSED = [
 
   ];
+
+  // 午前のみ休診日 ← ここに日付を追加するだけでOK
+  const MORNING_CLOSED = [
+    '2026-07-23',
+  ];
   // =============================================
 
   const pad2 = n => String(n).padStart(2,'0');
@@ -1396,21 +1404,25 @@
   function isTempClosed(d) {
     return TEMPORARY_CLOSED.includes(fmtDate(d));
   }
+  function isMorningClosed(d) {
+    return MORNING_CLOSED.includes(fmtDate(d));
+  }
 
   // お知らせバナー（臨時休診が今日以降にあれば表示）
   function updateNoticeBar() {
     const today = new Date(); today.setHours(0,0,0,0);
     const upcoming = TEMPORARY_CLOSED
-      .map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d)}; })
+      .map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d), type:'full'}; })
+      .concat(MORNING_CLOSED.map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d), type:'morning'}; }))
       .filter(x => x.date >= today)
       .sort((a,b) => a.date - b.date);
     const bar = document.getElementById('notice-bar');
     if (upcoming.length > 0) {
-      const dates = upcoming.map(x => {
+      const notices = upcoming.map(x => {
         const [y,m,d] = x.str.split('-');
-        return `${parseInt(m)}月${parseInt(d)}日`;
+        return x.type === 'morning' ? `${parseInt(m)}月${parseInt(d)}日（午前休診）` : `${parseInt(m)}月${parseInt(d)}日`;
       }).join('・');
-      bar.textContent = `⚠ 臨時休診のお知らせ：${dates} は休診となります。ご不便をおかけします。`;
+      bar.textContent = `⚠ 休診のお知らせ：${notices}。ご不便をおかけします。`;
       bar.classList.add('active');
     } else {
       bar.classList.remove('active');
@@ -1449,6 +1461,7 @@
       const ds    = fmtDate(date);
       const closed= isClosed(date);
       const tempClosed = isTempClosed(date);
+      const morningClosed = isMorningClosed(date);
       const isToday = date.getTime() === today.getTime();
       let cls = 'hcal-cell';
       if (dow === 0) cls += ' sun';
@@ -1458,7 +1471,7 @@
       if (isToday) cls += ' is-today';
       html += `<div class="${cls}">
         <span class="hcal-date">${d}</span>
-        ${tempClosed ? '<span class="hcal-badge badge-temp">臨時休診</span>' : closed ? '<span class="hcal-badge badge-closed">休診日</span>' : ''}
+        ${tempClosed ? '<span class="hcal-badge badge-temp">臨時休診</span>' : closed ? '<span class="hcal-badge badge-closed">休診日</span>' : morningClosed ? '<span class="hcal-badge badge-morning">午前休診</span>' : ''}
       </div>`;
     }
 
