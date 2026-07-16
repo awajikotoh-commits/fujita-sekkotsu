@@ -1386,6 +1386,11 @@
   // 臨時休診日 ← ここに日付を追加するだけでOK
   // 例: '2026-05-10', '2026-06-03',
   const TEMPORARY_CLOSED = [
+
+  ];
+
+  // 臨時的な休診日（日曜・祝日以外で「休診日」として表示する日）
+  const EXTRA_CLOSED = [
     '2026-08-14',
     '2026-08-15',
   ];
@@ -1400,7 +1405,7 @@
   const fmtDate = d => `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
 
   function isClosed(d) {
-    return d.getDay() === 0 || HOLIDAYS.has(fmtDate(d));
+    return d.getDay() === 0 || HOLIDAYS.has(fmtDate(d)) || EXTRA_CLOSED.includes(fmtDate(d));
   }
   function isTempClosed(d) {
     return TEMPORARY_CLOSED.includes(fmtDate(d));
@@ -1414,6 +1419,7 @@
     const today = new Date(); today.setHours(0,0,0,0);
     const upcoming = TEMPORARY_CLOSED
       .map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d), type:'full'}; })
+      .concat(EXTRA_CLOSED.map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d), type:'full'}; }))
       .concat(MORNING_CLOSED.map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d), type:'morning'}; }))
       .filter(x => x.date >= today)
       .sort((a,b) => a.date - b.date);
