@@ -1417,7 +1417,6 @@
     const today = new Date(); today.setHours(0,0,0,0);
     const upcoming = TEMPORARY_CLOSED
       .map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d)}; })
-      .concat(EXTRA_CLOSED.map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d)}; }))
       .filter(x => x.date >= today)
       .sort((a,b) => a.date - b.date);
     const bar = document.getElementById('notice-bar');
