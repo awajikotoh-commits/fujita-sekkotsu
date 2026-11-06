@@ -623,9 +623,10 @@
     .hcal-cell.is-closed { background: #fff5f5; border-color: #ffd0d0; }
     .hcal-cell.is-temp-closed { background: #fff8f0; border-color: #ffd9a0; }
     .badge-temp { background: #f59e0b; color: white; }
-    .badge-morning { background: #fb923c; color: white; }
+    .badge-appt { background: #4a86e8; color: white; }
     .legend-dot.temp { background: #f59e0b; }
-    .legend-dot.morning { background: #fb923c; }
+    .legend-dot.appt { background: #4a86e8; }
+    .hcal-cell.is-appt { background: #f0f5ff; border-color: #bcd0f5; }
     /* お知らせバナー */
     .notice-bar {
       display: none;
@@ -919,7 +920,7 @@
     <div class="info-icon">📅</div>
     <div class="info-text">
       <div class="label">CLOSED</div>
-      <div class="value">日曜・祝日 定休</div>
+      <div class="value">日曜 定休（祝日は予約診療）</div>
     </div>
   </div>
   <div class="info-item">
@@ -998,7 +999,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <p class="hours-note">土曜は8:30〜14:30　／　定休日：日曜・祝日</p>
+                <p class="hours-note">土曜は8:30〜14:30　／　定休日：日曜（祝日は予約診療）</p>
                 <p class="hours-note" style="margin-top:8px;">白山市内はもちろん、鶴来・松任方面からも通いやすい場所にあります。</p>
                 <p class="hours-note" style="margin-top:8px;">明光小学校・広陽小学校・北辰中学校区にお住まいの方も、お気軽にご来院ください。</p>
               </div>
@@ -1033,7 +1034,7 @@
       <p class="section-tag">Calendar</p>
       <h2 class="section-title">休診日カレンダー</h2>
       <div class="divider"></div>
-      <p class="section-desc">日曜・祝日は休院です。毎月の休診日をご確認ください。</p>
+      <p class="section-desc">日曜は休院です。祝日は予約診療となります。毎月の予定をご確認ください。</p>
     </div>
     <div class="hcal-wrap reveal">
       <div class="hcal-card">
@@ -1057,7 +1058,7 @@
         <div class="hcal-legend">
           <div class="legend-item"><div class="legend-dot closed"></div>休診日</div>
           <div class="legend-item"><div class="legend-dot temp"></div>臨時休診</div>
-          <div class="legend-item"><div class="legend-dot morning"></div>午前休診</div>
+          <div class="legend-item"><div class="legend-dot appt"></div>予約診療</div>
           <div class="legend-item"><div class="legend-dot today"></div>今日</div>
         </div>
       </div>
@@ -1391,14 +1392,10 @@
   const TEMPORARY_CLOSED = [
   ];
 
-  // 臨時的な休診日（日曜・祝日以外で「休診日」として表示する日）
+  // 臨時的な休診日・年末年始（日曜以外で「休診日」として表示する日）
   const EXTRA_CLOSED = [
-
-  ];
-
-  // 午前のみ休診日 ← ここに日付を追加するだけでOK
-  const MORNING_CLOSED = [
-
+    '2026-12-29', '2026-12-30', '2026-12-31',
+    '2027-01-01', '2027-01-02',
   ];
   // =============================================
 
@@ -1406,29 +1403,28 @@
   const fmtDate = d => `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
 
   function isClosed(d) {
-    return d.getDay() === 0 || HOLIDAYS.has(fmtDate(d)) || EXTRA_CLOSED.includes(fmtDate(d));
+    return d.getDay() === 0 || EXTRA_CLOSED.includes(fmtDate(d));
   }
   function isTempClosed(d) {
     return TEMPORARY_CLOSED.includes(fmtDate(d));
   }
-  function isMorningClosed(d) {
-    return MORNING_CLOSED.includes(fmtDate(d));
+  function isAppointmentOnly(d) {
+    return HOLIDAYS.has(fmtDate(d)) && !EXTRA_CLOSED.includes(fmtDate(d)) && d.getDay() !== 0;
   }
 
   // お知らせバナー（臨時休診が今日以降にあれば表示）
   function updateNoticeBar() {
     const today = new Date(); today.setHours(0,0,0,0);
     const upcoming = TEMPORARY_CLOSED
-      .map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d), type:'full'}; })
-      .concat(EXTRA_CLOSED.map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d), type:'full'}; }))
-      .concat(MORNING_CLOSED.map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d), type:'morning'}; }))
+      .map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d)}; })
+      .concat(EXTRA_CLOSED.map(s => { const [y,m,d] = s.split('-'); return {str:s, date:new Date(y,m-1,d)}; }))
       .filter(x => x.date >= today)
       .sort((a,b) => a.date - b.date);
     const bar = document.getElementById('notice-bar');
     if (upcoming.length > 0) {
       const notices = upcoming.map(x => {
         const [y,m,d] = x.str.split('-');
-        return x.type === 'morning' ? `${parseInt(m)}月${parseInt(d)}日（午前休診）` : `${parseInt(m)}月${parseInt(d)}日`;
+        return `${parseInt(m)}月${parseInt(d)}日`;
       }).join('・');
       bar.textContent = `⚠ 休診のお知らせ：${notices}。ご不便をおかけします。`;
       bar.classList.add('active');
@@ -1469,17 +1465,18 @@
       const ds    = fmtDate(date);
       const closed= isClosed(date);
       const tempClosed = isTempClosed(date);
-      const morningClosed = isMorningClosed(date);
+      const appointmentOnly = isAppointmentOnly(date);
       const isToday = date.getTime() === today.getTime();
       let cls = 'hcal-cell';
       if (dow === 0) cls += ' sun';
       else if (dow === 6) cls += ' sat';
       if (tempClosed) cls += ' is-temp-closed';
       else if (closed) cls += ' is-closed';
+      else if (appointmentOnly) cls += ' is-appt';
       if (isToday) cls += ' is-today';
       html += `<div class="${cls}">
         <span class="hcal-date">${d}</span>
-        ${tempClosed ? '<span class="hcal-badge badge-temp">臨時休診</span>' : closed ? '<span class="hcal-badge badge-closed">休診日</span>' : morningClosed ? '<span class="hcal-badge badge-morning">午前休診</span>' : ''}
+        ${tempClosed ? '<span class="hcal-badge badge-temp">臨時休診</span>' : closed ? '<span class="hcal-badge badge-closed">休診日</span>' : appointmentOnly ? '<span class="hcal-badge badge-appt">予約診療</span>' : ''}
       </div>`;
     }
 
